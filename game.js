@@ -110,15 +110,36 @@ function removeStart() {
   start.addEventListener('click', function() {
     start.parentNode.removeChild(start);
 	//Starting alien animation after clicking start button 
-    var alien = document.getElementById('alien');
+	var alien = document.getElementById('alien');
     alien.classList.add('alien-move');
     timeout = setInterval(move, 6);
   });
   document.addEventListener('keydown', keydown);
   document.addEventListener('keyup', keyup);
 }
+//Bomb falling
+function createBomb() {
+	var bomb = document.createElement('div');
+	bomb.classList.add('bomb');
+	document.body.appendChild(bomb);
+	var alien = document.getElementById('alien');
+	var alienPosition = alien.getBoundingClientRect();
+	bomb.style.left = (alienPosition.left + alienPosition.width / 2) + 'px';
+	bomb.style.top = (alienPosition.top + alienPosition.height) + 'px';
+	var animateBomb = setInterval(function() {
+	  var bombRect = bomb.getBoundingClientRect();
+	  if (bombRect.bottom >= window.innerHeight) {
+		clearInterval(animateBomb);
+		bomb.parentNode.removeChild(bomb);
+	  }
+	}, 20);
+  }
   
-
-
+  function alienAnimation() {
+	createBomb();
+	animateBombs();
+  }
   
+  var alien = document.getElementById('alien');
+  alien.addEventListener('animationiteration', alienAnimation);  
 document.addEventListener('DOMContentLoaded', myLoadFunction);

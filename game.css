@@ -30,7 +30,7 @@ aside ul {list-style-type: none; margin-left: 0; padding-left: 0; margin-bottom:
 #body3 {background-image: url(images/body3.png);}
 #body4 {background-image: url(images/body4.png);}
 
-.tree {position: absolute; left: 400px; top: 300px;}
+.tree {background-image: url(images/tree.png); position: absolute; left: 0px; top:100 px; height: 100px; width: auto; background-size: contain; top: 100px; z-index: 1;}
 
 #opponent {left: 500px; top: 500px;}
 #opponent .body {background-image: url(images/body1.png);}
@@ -441,12 +441,24 @@ aside ul {list-style-type: none; margin-left: 0; padding-left: 0; margin-bottom:
 .bomb {
 	background-image: url(images/sprites.png);
 	width: 31px;
-	height: 10px;
+	height: 31px;
 	position: absolute;
-	background-position: -96px -401px;
-	transform: rotate(90deg)
+	background-size: contain;
+	top: -50px;
+	left: 0;
+	right: 0;
+	margin: 0 auto;
+	animation: bomb-fall 1s infinite;
 }
-
+@keyframes bomb-fall {
+	0% {
+	  top: 50px;
+	}
+	
+	100% {
+	  top: 100vh;
+	}
+  }
 .start:before {
 	background-image: url(images/head3.png);
 	background-repeat: no-repeat;
